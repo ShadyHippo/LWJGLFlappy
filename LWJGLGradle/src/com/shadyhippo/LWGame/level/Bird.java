@@ -2,12 +2,13 @@ package com.shadyhippo.LWGame.level;
 
 import static org.lwjgl.glfw.GLFW.*;
 
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+
 import com.shadyhippo.LWGame.graphics.Shader;
 import com.shadyhippo.LWGame.graphics.Texture;
 import com.shadyhippo.LWGame.graphics.VertexArray;
 import com.shadyhippo.LWGame.input.Input;
-import com.shadyhippo.LWGame.math.Matrix4f;
-import com.shadyhippo.LWGame.math.Vector3f;
 
 public class Bird {
 	
@@ -68,7 +69,7 @@ public class Bird {
 	
 	public void render() {
 		Shader.BIRD.enable();
-		Shader.BIRD.setUniforMat4f("ml_matrix",  Matrix4f.translate(position).multiply(Matrix4f.rotate(rot)));
+		Shader.BIRD.setUniforMat4f("ml_matrix",  new Matrix4f().translation(position).rotateZ((float) Math.toRadians(rot)));
 		texture.bind();
 		mesh.render();
 		Shader.BIRD.disable();

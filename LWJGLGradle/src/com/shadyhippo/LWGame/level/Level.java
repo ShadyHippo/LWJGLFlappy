@@ -4,12 +4,13 @@ import static org.lwjgl.glfw.GLFW.*;
 
 import java.util.Random;
 
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+
 import com.shadyhippo.LWGame.graphics.Shader;
 import com.shadyhippo.LWGame.graphics.Texture;
 import com.shadyhippo.LWGame.graphics.VertexArray;
 import com.shadyhippo.LWGame.input.Input;
-import com.shadyhippo.LWGame.math.Matrix4f;
-import com.shadyhippo.LWGame.math.Vector3f;
 
 public class Level {
 	
@@ -98,7 +99,7 @@ public class Level {
 	private void renderPipes() {
 		Shader.PIPE.enable();
 		Shader.PIPE.setUniform2f("bird", 0, bird.getY());
-		Shader.PIPE.setUniforMat4f("vw_matrix", Matrix4f.translate(new Vector3f(xScroll * 0.05f, 0.0f, 0.0f)));
+		Shader.PIPE.setUniforMat4f("vw_matrix", new Matrix4f().translate(new Vector3f(xScroll * 0.05f, 0.0f, 0.0f)));
 		Pipe.getTexture().bind();
 		Pipe.getMesh().bind();
 		
@@ -147,7 +148,7 @@ public class Level {
 		Shader.BG.setUniform2f("bird", 0, bird.getY());
 		background.bind();
 		for (int i = map; i < map + 4; i++) {
-			Shader.BG.setUniforMat4f("vw_matrix", Matrix4f.translate(new Vector3f(i * 10 + xScroll * 0.03f, 0.0f, 0.0f)));
+			Shader.BG.setUniforMat4f("vw_matrix", new Matrix4f().translate(new Vector3f(i * 10 + xScroll * 0.03f, 0.0f, 0.0f)));
 			background.draw();
 		}
 		Shader.BG.disable();

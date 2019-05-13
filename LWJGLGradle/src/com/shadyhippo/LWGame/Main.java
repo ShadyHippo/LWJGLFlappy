@@ -9,6 +9,7 @@ import static org.lwjgl.opengl.GL13.*;
 
 import java.nio.IntBuffer;
 
+import org.joml.Matrix4f;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -17,7 +18,6 @@ import org.lwjgl.system.MemoryStack;
 import com.shadyhippo.LWGame.graphics.Shader;
 import com.shadyhippo.LWGame.input.Input;
 import com.shadyhippo.LWGame.level.Level;
-import com.shadyhippo.LWGame.math.Matrix4f;
 
 public class Main implements Runnable {
 	
@@ -121,7 +121,7 @@ public class Main implements Runnable {
 		//puts the OpenGL context onto this thread
 		glfwMakeContextCurrent(window);
 		//enable v-sync with 1, disable with 0
-		glfwSwapInterval(1);
+		glfwSwapInterval(0 );
 		//Make window visible
 		glfwShowWindow(window);
 		
@@ -138,7 +138,7 @@ public class Main implements Runnable {
 		System.out.println("OpenGL: " + glGetString(GL_VERSION));
 		Shader.loadAll();
 		
-		Matrix4f pr_matrix = Matrix4f.orthographic(-10.0f, 10.0f, -10.0f * 9.0f / 16.0f, 10.0f * 9.0f / 16.0f, -1.0f, 1.0f);
+		Matrix4f pr_matrix = new Matrix4f().setOrtho(-10.0f, 10.0f, -10.0f * 9.0f / 16.0f, 10.0f * 9.0f / 16.0f, -1.0f, 1.0f);
 		Shader.BG.setUniforMat4f("pr_matrix", pr_matrix);
 		Shader.BG.setUniform1i("tex", 1);
 		

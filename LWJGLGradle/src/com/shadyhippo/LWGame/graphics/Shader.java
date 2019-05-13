@@ -2,11 +2,14 @@ package com.shadyhippo.LWGame.graphics;
 
 import static org.lwjgl.opengl.GL20.*;
 
+import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.shadyhippo.LWGame.math.Matrix4f;
-import com.shadyhippo.LWGame.math.Vector3f;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+import org.lwjgl.BufferUtils;
+
 import com.shadyhippo.LWGame.utils.ShaderUtils;
 
 public class Shader {
@@ -67,7 +70,8 @@ public class Shader {
 	
 	public void setUniforMat4f(String name, Matrix4f matrix) {
 		if (!enabled) enable();
-		glUniformMatrix4fv(getUniform(name), false, matrix.toFloatBuffer());
+		FloatBuffer floatBuffer = BufferUtils.createFloatBuffer(16);
+		glUniformMatrix4fv(getUniform(name), false, matrix.get(floatBuffer));
 	}
 	
 	public void enable() {

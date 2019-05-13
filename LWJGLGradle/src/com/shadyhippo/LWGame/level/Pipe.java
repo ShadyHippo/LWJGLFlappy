@@ -1,9 +1,10 @@
 package com.shadyhippo.LWGame.level;
 
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+
 import com.shadyhippo.LWGame.graphics.Texture;
 import com.shadyhippo.LWGame.graphics.VertexArray;
-import com.shadyhippo.LWGame.math.Matrix4f;
-import com.shadyhippo.LWGame.math.Vector3f;
 
 public class Pipe {
 	
@@ -41,7 +42,7 @@ public class Pipe {
 	public Pipe(float x, float y) {
 		position.x = x;
 		position.y = y;
-		ml_matrix = Matrix4f.translate(position);
+		ml_matrix = new Matrix4f().translation(position);
 	}
 	
 	public float getX() {
